@@ -55,21 +55,50 @@
             e outras informações importantes para organização das missões.
           </p>
         </div>
+      </div>
+
+      <h2>Como o Site Funciona</h2>
+      <div style="background: #FFE6CC; padding: 1.5rem; border-radius: 8px; border-left: 4px solid #FF6600;">
+        <p>
+          Este sistema foi desenvolvido com <strong>HTML5, CSS3 e JavaScript puro</strong>,
+          sem depender de servidores ou frameworks complexos. Todos os dados do formulário
+          são processados no navegador do cliente.
+        </p>
+        <p style="margin-top: 1rem;">
+          O site utiliza o método <strong>GET</strong> para transmitir dados através da URL,
+          permitindo que você veja exatamente quais informações estão sendo enviadas.
+          Isso é ideal para fins educacionais e demonstrações.
+        </p>
+      </div>
+
+      <h2>Explicação Técnica</h2>
+      <div style="background: #FFE6CC; padding: 1.5rem; border-radius: 8px; border-left: 4px solid #FF6600;">
+        <h3>Como o JavaScript processa os dados do formulário:</h3>
+        <ol style="margin-left: 1.5rem;">
+          <li><strong>Extração da Query String:</strong> O JavaScript obtém todos os parâmetros passados na URL</li>
+          <li><strong>Decodificação:</strong> Decodifica caracteres especiais para exibição legível</li>
+          <li><strong>Processamento:</strong> Agrupa múltiplos valores quando a mesma chave aparece várias vezes (como em checkboxes)</li>
+          <li><strong>Formatação:</strong> Transforma os dados brutos em um formato visualmente agradável e fácil de entender</li>
+          <li><strong>Validação:</strong> Verifica se há dados válidos a exibir e oferece feedback ao usuário</li>
+        </ol>
+
+        <h3 style="margin-top: 2rem;">Benefícios desta Abordagem:</h3>
+        <ul style="margin-left: 1.5rem;">
+          <li>✓ Funciona completamente no navegador (client-side)</li>
+          <li>✓ Sem necessidade de servidor backend</li>
+          <li>✓ Transparência total - veja os dados na URL</li>
+          <li>✓ Ideal para fins educacionais e prototipagem</li>
+          <li>✓ Rápido e responsivo</li>
+        </ul>
+      </div>
     </section>
 
     <footer>
       <p>Vila da Folha 2026</p>
-      <p style="font-size: 0.9rem; margin-top: 1rem;">Desenvolvido com HTML5, CSS3 e JavaScript puro</p>
+      <p>Fundamentos de Programação Web</p>
+      <p style="font-size: 0.9rem; margin-top: 1rem;">Autor: Márcio Vinícius de Carvalho Marinho</p>
     </footer>
   </main>
-
-</body>
-
-</html>
-  <footer>
-    <p>&copy; 2024 Meu Site. Todos os direitos reservados.</p>
-    <p>Fundamentos de Programação Web</p>
-  </footer>
 
   <script src="./scripts/main.js"></script>
 </body>

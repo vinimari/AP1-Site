@@ -96,14 +96,6 @@ function validateField(field, type) {
         }
         break;
 
-      case 'min-length':
-        const minLength = parseInt(field.dataset.minLength) || 3;
-        if (value.length < minLength) {
-          isValid = false;
-          errorMessage = `Mínimo de ${minLength} caracteres!`;
-        }
-        break;
-
       case 'number':
         if (isNaN(value)) {
           isValid = false;
@@ -239,55 +231,31 @@ function clearForm(formId) {
   fields.forEach(field => clearFieldValidation(field));
 }
 
-/**
- * Obtém dados do formulário como objeto
- * @param {string} formId - ID do formulário
- * @returns {Object} - Dados do formulário
- */
-function getFormData(formId) {
-  const form = document.getElementById(formId);
-  if (!form) return {};
+// Inicializar quando o DOM estiver carregado
+document.addEventListener('DOMContentLoaded', function () {
+  initRealTimeValidation();
 
-  const formData = new FormData(form);
-  const data = {};
-
-  for (let [key, value] of formData.entries()) {
-    if (data[key]) {
-      // Se a chave já existe, converter para array
-      if (!Array.isArray(data[key])) {
-        data[key] = [data[key]];
-      }
-      data[key].push(value);
-    } else {
-      data[key] = value;
-    }
-  }
-
-  return data;
-}
-
-/**
- * Preenche um formulário com dados
- * @param {string} formId - ID do formulário
- * @param {Object} data - Dados para preencher
- */
-function fillForm(formId, data) {
-  const form = document.getElementById(formId);
+  const form = document.getElementById('cadastroForm');
   if (!form) return;
 
-  for (let [key, value] of Object.entries(data)) {
-    const field = form.elements[key];
-    if (field) {
-      if (field.type === 'checkbox' || field.type === 'radio') {
-        field.checked = field.value === value;
-      } else {
-        field.value = value;
-      }
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    if (validateForm('cadastroForm')) {
+      showAlert('Formulário válido! Enviando dados...', 'success', 2000);
+      setTimeout(() => { this.submit(); }, 1000);
+    } else {
+      showAlert('Por favor, corrija os erros no formulário!', 'error', 5000);
+      smoothScroll('.form-group.error');
     }
-  }
-}
+  });
 
-// Inicializar validação em tempo real quando o DOM estiver carregado
-document.addEventListener('DOMContentLoaded', function() {
-  initRealTimeValidation();
+  form.addEventListener('keydown', function (e) {
+    if (e.ctrlKey && e.key === 'Enter') {
+      document.querySelector('input[type="submit"]').click();
+    }
+  });
+
+  form.addEventListener('reset', function () {
+    setTimeout(() => { clearForm('cadastroForm'); }, 0);
+  });
 });

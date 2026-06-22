@@ -42,7 +42,7 @@
 
             <div class="form-group">
               <label for="nome">Nome Completo <span class="required">*</span></label>
-              <input type="text" id="nome" name="nome" required data-validate="min-length" data-min-length="3"
+              <input type="text" id="nome" name="nome" required minlength="3"
                 placeholder="Ex: Naruto Uzumaki" maxlength="100">
               <div class="error-message"></div>
               <div class="success-message">Campo válido</div>
@@ -91,7 +91,7 @@
 
             <div class="form-group">
               <label for="numero">Número de Registro <span class="required">*</span></label>
-              <input type="text" id="numero" name="numero" required data-validate="min-length" data-min-length="1"
+              <input type="text" id="numero" name="numero" required minlength="1"
                 placeholder="Ex: 001" maxlength="10">
               <div class="error-message"></div>
               <div class="success-message">Número registrado</div>
@@ -115,7 +115,7 @@
 
             <div class="form-group">
               <label for="equipe">Equipe / Squad <span class="required">*</span></label>
-              <input type="text" id="equipe" name="equipe" required data-validate="min-length" data-min-length="1"
+              <input type="text" id="equipe" name="equipe" required minlength="1"
                 placeholder="Ex: Equipe 7" maxlength="50">
               <div class="error-message"></div>
               <div class="success-message">Equipe registrada</div>
@@ -135,7 +135,7 @@
 
             <div class="form-group">
               <label for="usuario">Nome de Usuário <span class="required">*</span></label>
-              <input type="text" id="usuario" name="usuario" required data-validate="min-length" data-min-length="4"
+              <input type="text" id="usuario" name="usuario" required minlength="4"
                 placeholder="Ex: naruto_uzumaki" maxlength="50">
               <div class="error-message"></div>
               <div class="success-message">Usuário válido</div>
@@ -143,7 +143,7 @@
 
             <div class="form-group">
               <label for="senha">Senha <span class="required">*</span></label>
-              <input type="password" id="senha" name="senha" required data-validate="password"
+              <input type="password" id="senha" name="senha" required data-validate="password" minlength="6"
                 placeholder="Mínimo 6 caracteres" maxlength="50">
               <div class="error-message"></div>
               <div class="success-message">Senha válida</div>
@@ -171,31 +171,11 @@
   <footer>
     <p>Vila da Folha 2026</p>
     <p>Fundamentos de Programação Web</p>
+    <p style="font-size: 0.9rem; margin-top: 1rem;">Autor: Márcio Vinícius de Carvalho Marinho</p>
   </footer>
 
   <script src="./scripts/validacao.js"></script>
   <script src="./scripts/main.js"></script>
-  <script>
-    document.getElementById('cadastroForm').addEventListener('submit', function (e) {
-      e.preventDefault();
-
-      if (validateForm('cadastroForm')) {
-        showAlert('Formulário válido! Enviando dados...', 'success', 2000);
-        setTimeout(() => {
-          this.submit();
-        }, 1000);
-      } else {
-        showAlert('Por favor, corrija os erros no formulário!', 'error', 5000);
-        smoothScroll('.form-group.error');
-      }
-    });
-
-    document.getElementById('cadastroForm').addEventListener('keydown', function (e) {
-      if (e.ctrlKey && e.key === 'Enter') {
-        document.querySelector('input[type="submit"]').click();
-      }
-    });
-  </script>
 </body>
 
 </html>
