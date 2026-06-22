@@ -1,4 +1,18 @@
 /**
+ * Escapa HTML para prevenir XSS
+ * @param {string} str - String a escapar
+ * @returns {string}
+ */
+function escapeHtml(str) {
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;');
+}
+
+/**
  * Obtém parâmetros da URL (query string)
  * @returns {Object} - Objeto com os parâmetros
  */
@@ -64,7 +78,7 @@ function displayData() {
   urlAtual.textContent = window.location.href;
 
   if (Object.keys(data).length === 0) {
-    dadosResumo.innerHTML = '<p style="color: #dc3545;">Nenhum dado foi recebido! Verifique se o formulário foi enviado corretamente.</p>';
+    dadosResumo.innerHTML = '<p class="alert alert-error">Nenhum dado foi recebido! Verifique se o formulário foi enviado corretamente.</p>';
     tabelaDados.innerHTML = '';
     return;
   }
@@ -72,8 +86,8 @@ function displayData() {
   // Criar resumo dos dados
   let resumoHtml = '';
   for (let [key, value] of Object.entries(data)) {
-    const label = formatLabel(key);
-    const displayValue = formatValue(value);
+    const label = escapeHtml(formatLabel(key));
+    const displayValue = escapeHtml(formatValue(value));
 
     resumoHtml += `
       <div class="summary-item">
@@ -86,26 +100,22 @@ function displayData() {
 
   // Criar tabela detalhada
   let tabelaHtml = '<h3>Tabela Detalhada de Dados</h3>';
-  tabelaHtml += '<table style="width: 100%; border-collapse: collapse;">';
-  tabelaHtml += '<thead style="background-color: #FF6600; color: white;">';
-  tabelaHtml += '<tr><th style="padding: 0.75rem; text-align: left; border: 1px solid #e0e0e0;">Campo</th>';
-  tabelaHtml += '<th style="padding: 0.75rem; text-align: left; border: 1px solid #e0e0e0;">Valor</th></tr>';
+  tabelaHtml += '<table class="data-table">';
+  tabelaHtml += '<thead>';
+  tabelaHtml += '<tr><th>Campo</th><th>Valor</th></tr>';
   tabelaHtml += '</thead>';
   tabelaHtml += '<tbody>';
 
-  let rowColor = '#FFE6CC';
   for (let [key, value] of Object.entries(data)) {
-    const label = formatLabel(key);
-    const displayValue = formatValue(value);
+    const label = escapeHtml(formatLabel(key));
+    const displayValue = escapeHtml(formatValue(value));
 
     tabelaHtml += `
-      <tr style="background-color: ${rowColor}; border: 1px solid #e0e0e0;">
-        <td style="padding: 0.75rem; border: 1px solid #e0e0e0;"><strong>${label}</strong></td>
-        <td style="padding: 0.75rem; border: 1px solid #e0e0e0;">${displayValue}</td>
+      <tr>
+        <td><strong>${label}</strong></td>
+        <td>${displayValue}</td>
       </tr>
     `;
-
-    rowColor = rowColor === '#FFE6CC' ? 'white' : '#FFE6CC';
   }
 
   tabelaHtml += '</tbody>';

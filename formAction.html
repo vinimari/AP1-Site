@@ -27,7 +27,7 @@
   <main>
     <section>
       <h1>Cadastro Recebido com Sucesso</h1>
-      <p style="text-align: center; color: #FF6600; font-size: 1.1rem;">
+      <p class="text-center text-lead">
         Seu cadastro foi processado e registrado no sistema de ninjas da Vila da Folha.
       </p>
 
@@ -36,9 +36,9 @@
         <div id="dadosResumo"></div>
       </div>
 
-      <div id="tabelaDados" style="margin: 2rem 0;"></div>
+      <div id="tabelaDados"></div>
 
-      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 2rem 0;">
+      <div class="grid-2">
         <a href="./form.html" class="btn btn-primary">Voltar ao Formulário</a>
         <a href="./index.html" class="btn btn-secondary">Ir para Início</a>
       </div>
@@ -50,17 +50,17 @@
           URL. O JavaScript extrai e exibe os parâmetros da query string em tempo real,
           sem necessidade de envio para um servidor.
         </p>
-        <p style="margin-top: 1rem;">
-          <strong>URL Atual:</strong> <code style="background: #f0f0f0; padding: 0.25rem 0.5rem; border-radius: 3px; word-break: break-all;">
+        <p class="mt-2">
+          <strong>URL Atual:</strong> <code class="code-inline">
             <span id="urlAtual"></span>
           </code>
         </p>
       </div>
 
       <h2>Explicação Técnica</h2>
-      <div style="background: #FFE6CC; padding: 1.5rem; border-radius: 8px; border-left: 4px solid #FF6600;">
+      <div class="highlight">
         <h3>Como o JavaScript processa os dados:</h3>
-        <ol style="margin-left: 1.5rem;">
+        <ol>
           <li><strong>Extração da Query String:</strong> Obtém todos os parâmetros da URL</li>
           <li><strong>Decodificação:</strong> Decodifica caracteres especiais</li>
           <li><strong>Processamento:</strong> Agrupa múltiplos valores com mesma chave</li>
@@ -72,9 +72,32 @@
   </main>
 
   <footer>
-    <p>Vila da Folha 2026</p>
-    <p>Fundamentos de Programação Web</p>
-    <p style="font-size: 0.9rem; margin-top: 1rem;">Autor: Márcio Vinícius de Carvalho Marinho</p>
+    <div class="footer-content">
+      <div class="footer-section">
+        <h4>Navegação</h4>
+        <ul>
+          <li><a href="./index.html">Início</a></li>
+          <li><a href="./form.html">Cadastrar Ninja</a></li>
+          <li><a href="./about.html">Sobre</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Projeto</h4>
+        <ul>
+          <li>Fundamentos de Programação Web</li>
+          <li>PUCPR - 2026</li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Autor</h4>
+        <ul>
+          <li>Márcio Vinícius de Carvalho Marinho</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>Vila da Folha 2026 - Fundamentos de Programação Web</p>
+    </div>
   </footer>
 
   <script src="./scripts/formAction.js"></script>

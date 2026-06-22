@@ -79,26 +79,6 @@ function showAlert(message, type = 'info', duration = 5000) {
 }
 
 /**
- * Função para validar email
- * @param {string} email - Email a validar
- * @returns {boolean}
- */
-function validateEmail(email) {
-  const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  return regex.test(email);
-}
-
-/**
- * Função para validar telefone (formato brasileiro)
- * @param {string} phone - Telefone a validar
- * @returns {boolean}
- */
-function validatePhone(phone) {
-  const regex = /^(\(?\d{2}\)?\s?)?\d{4,5}-?\d{4}$/;
-  return regex.test(phone.replace(/\s/g, ''));
-}
-
-/**
  * Função para limpar um campo de formulário
  * @param {HTMLElement} field - Campo a limpar
  */

@@ -5,14 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sobre - Cadastro de Ninjas</title>
   <link rel="stylesheet" href="./estilos/style.css">
-  <style>
-    .info-box {
-      background: #FFE6CC;
-      padding: 1.5rem;
-      border-radius: 8px;
-      border-left: 4px solid #FF6600;
-    }
-  </style>
 </head>
 <body>
   <header>
@@ -20,7 +12,7 @@
       <a href="./index.html" class="logo">
         <span class="logo-text">Cadastro de Ninjas</span>
       </a>
-      <button class="menu-toggle">Menu</button>
+      <button class="menu-toggle">Menu</button> 
       <nav>
         <ul>
           <li><a href="./index.html">Início</a></li>
@@ -39,8 +31,8 @@
       </p>
 
       <h2>Objetivos do Projeto</h2>
-      <div style="display: grid; gap: 1rem;">
-        <div class="info-box">
+      <div>
+        <div class="highlight">
           <h3>Organização de Ninjas</h3>
           <p>
             Manter um registro centralizado de todos os ninjas da Vila da Folha, desde
@@ -48,7 +40,7 @@
           </p>
         </div>
 
-        <div class="info-box">
+        <div class="highlight">
           <h3>Gerenciamento de Informações</h3>
           <p>
             Registrar dados essenciais como nível de ninja, especialidade, equipe/squad
@@ -58,13 +50,13 @@
       </div>
 
       <h2>Como o Site Funciona</h2>
-      <div style="background: #FFE6CC; padding: 1.5rem; border-radius: 8px; border-left: 4px solid #FF6600;">
+      <div class="highlight">
         <p>
           Este sistema foi desenvolvido com <strong>HTML5, CSS3 e JavaScript puro</strong>,
           sem depender de servidores ou frameworks complexos. Todos os dados do formulário
           são processados no navegador do cliente.
         </p>
-        <p style="margin-top: 1rem;">
+        <p class="mt-2">
           O site utiliza o método <strong>GET</strong> para transmitir dados através da URL,
           permitindo que você veja exatamente quais informações estão sendo enviadas.
           Isso é ideal para fins educacionais e demonstrações.
@@ -72,9 +64,9 @@
       </div>
 
       <h2>Explicação Técnica</h2>
-      <div style="background: #FFE6CC; padding: 1.5rem; border-radius: 8px; border-left: 4px solid #FF6600;">
+      <div class="highlight">
         <h3>Como o JavaScript processa os dados do formulário:</h3>
-        <ol style="margin-left: 1.5rem;">
+        <ol>
           <li><strong>Extração da Query String:</strong> O JavaScript obtém todos os parâmetros passados na URL</li>
           <li><strong>Decodificação:</strong> Decodifica caracteres especiais para exibição legível</li>
           <li><strong>Processamento:</strong> Agrupa múltiplos valores quando a mesma chave aparece várias vezes (como em checkboxes)</li>
@@ -82,8 +74,8 @@
           <li><strong>Validação:</strong> Verifica se há dados válidos a exibir e oferece feedback ao usuário</li>
         </ol>
 
-        <h3 style="margin-top: 2rem;">Benefícios desta Abordagem:</h3>
-        <ul style="margin-left: 1.5rem;">
+        <h3 class="mt-4">Benefícios desta Abordagem:</h3>
+        <ul>
           <li>✓ Funciona completamente no navegador (client-side)</li>
           <li>✓ Sem necessidade de servidor backend</li>
           <li>✓ Transparência total - veja os dados na URL</li>
@@ -92,13 +84,36 @@
         </ul>
       </div>
     </section>
-
-    <footer>
-      <p>Vila da Folha 2026</p>
-      <p>Fundamentos de Programação Web</p>
-      <p style="font-size: 0.9rem; margin-top: 1rem;">Autor: Márcio Vinícius de Carvalho Marinho</p>
-    </footer>
   </main>
+
+  <footer>
+    <div class="footer-content">
+      <div class="footer-section">
+        <h4>Navegação</h4>
+        <ul>
+          <li><a href="./index.html">Início</a></li>
+          <li><a href="./form.html">Cadastrar Ninja</a></li>
+          <li><a href="./about.html">Sobre</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Projeto</h4>
+        <ul>
+          <li>Fundamentos de Programação Web</li>
+          <li>PUCPR - 2026</li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Autor</h4>
+        <ul>
+          <li>Márcio Vinícius de Carvalho Marinho</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>Vila da Folha 2026 - Fundamentos de Programação Web</p>
+    </div>
+  </footer>
 
   <script src="./scripts/main.js"></script>
 </body>
