@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cadastro de Ninja - Vila da Folha</title>
+  <link rel="stylesheet" href="./estilos/style.css">
+  <link rel="stylesheet" href="./estilos/form.css">
+</head>
+
+<body>
+  <header>
+    <div class="header-container">
+      <a href="./index.html" class="logo">
+        <span class="logo-text">Cadastro de Ninjas</span>
+      </a>
+      <button class="menu-toggle">Menu</button>
+      <nav>
+        <ul>
+          <li><a href="./index.html">Início</a></li>
+          <li><a href="./form.html">Cadastrar Ninja</a></li>
+          <li><a href="./about.html">Sobre</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section>
+      <h1>Cadastro de Ninja</h1>
+      <p>
+        Preencha todos os campos abaixo para se registrar como ninja na Vila da Folha.
+        Todos os campos são obrigatórios e serão validados em tempo real.
+      </p>
+
+      <div class="form-container">
+        <form id="cadastroForm" method="GET" action="./formAction.html">
+          <!-- INFORMAÇÕES PESSOAIS -->
+          <fieldset>
+            <legend>Informações Pessoais</legend>
+
+            <div class="form-group">
+              <label for="nome">Nome Completo <span class="required">*</span></label>
+              <input type="text" id="nome" name="nome" required data-validate="min-length" data-min-length="3"
+                placeholder="Ex: Naruto Uzumaki" maxlength="100">
+              <div class="error-message"></div>
+              <div class="success-message">Campo válido</div>
+            </div>
+
+            <div class="form-group">
+              <label for="dataNascimento">Data de Nascimento <span class="required">*</span></label>
+              <input type="date" id="dataNascimento" name="dataNascimento" required>
+              <div class="error-message"></div>
+              <div class="success-message">Data válida</div>
+            </div>
+          </fieldset>
+
+          <!-- INFORMAÇÕES DE NINJA -->
+          <fieldset>
+            <legend>Informações de Ninja</legend>
+
+            <div class="form-group">
+              <label for="vila">Vila <span class="required">*</span></label>
+              <select id="vila" name="vila" required>
+                <option value="">-- Selecione uma Vila --</option>
+                <option value="folha">Vila da Folha</option>
+                <option value="areia">Vila da Areia</option>
+                <option value="neblina">Vila da Neblina</option>
+                <option value="trovao">Vila do Trovão</option>
+                <option value="fogo">Vila do Fogo</option>
+                <option value="outra">Outra Vila</option>
+              </select>
+              <div class="error-message"></div>
+              <div class="success-message">Vila selecionada</div>
+            </div>
+
+            <div class="form-group">
+              <label for="nivel">Nível de Ninja <span class="required">*</span></label>
+              <select id="nivel" name="nivel" required>
+                <option value="">-- Selecione um Nível --</option>
+                <option value="gennin">Gennin</option>
+                <option value="chuunin">Chuunin</option>
+                <option value="jounin">Jounin</option>
+                <option value="sannin">Sannin</option>
+                <option value="kage">Kage</option>
+              </select>
+              <div class="error-message"></div>
+              <div class="success-message">Nível selecionado</div>
+            </div>
+
+            <div class="form-group">
+              <label for="numero">Número de Registro <span class="required">*</span></label>
+              <input type="text" id="numero" name="numero" required data-validate="min-length" data-min-length="1"
+                placeholder="Ex: 001" maxlength="10">
+              <div class="error-message"></div>
+              <div class="success-message">Número registrado</div>
+            </div>
+
+            <div class="form-group">
+              <label for="especialidade">Especialidade <span class="required">*</span></label>
+              <select id="especialidade" name="especialidade" required>
+                <option value="">-- Selecione uma Especialidade --</option>
+                <option value="ninjutsu">Ninjutsu</option>
+                <option value="genjutsu">Genjutsu</option>
+                <option value="taijutsu">Taijutsu</option>
+                <option value="fuinjutsu">Fuinjutsu</option>
+                <option value="kenjutsu">Kenjutsu</option>
+                <option value="sensoriamento">Sensoriamento</option>
+                <option value="medico">Ninjutsu Médico</option>
+              </select>
+              <div class="error-message"></div>
+              <div class="success-message">Especialidade selecionada</div>
+            </div>
+
+            <div class="form-group">
+              <label for="equipe">Equipe / Squad <span class="required">*</span></label>
+              <input type="text" id="equipe" name="equipe" required data-validate="min-length" data-min-length="1"
+                placeholder="Ex: Equipe 7" maxlength="50">
+              <div class="error-message"></div>
+              <div class="success-message">Equipe registrada</div>
+            </div>
+
+            <div class="form-group">
+              <label for="jutsuAssinatura">Jutsu de Assinatura</label>
+              <textarea id="jutsuAssinatura" name="jutsuAssinatura" placeholder="Descreva seu jutsu de assinatura"
+                maxlength="200"></textarea>
+              <div class="success-message">Campo preenchido</div>
+            </div>
+          </fieldset>
+
+          <!-- DADOS DE CONTA -->
+          <fieldset>
+            <legend>Dados de Conta</legend>
+
+            <div class="form-group">
+              <label for="usuario">Nome de Usuário <span class="required">*</span></label>
+              <input type="text" id="usuario" name="usuario" required data-validate="min-length" data-min-length="4"
+                placeholder="Ex: naruto_uzumaki" maxlength="50">
+              <div class="error-message"></div>
+              <div class="success-message">Usuário válido</div>
+            </div>
+
+            <div class="form-group">
+              <label for="senha">Senha <span class="required">*</span></label>
+              <input type="password" id="senha" name="senha" required data-validate="password"
+                placeholder="Mínimo 6 caracteres" maxlength="50">
+              <div class="error-message"></div>
+              <div class="success-message">Senha válida</div>
+            </div>
+
+            <div class="form-group">
+              <label for="confirmaSenha">Confirmar Senha <span class="required">*</span></label>
+              <input type="password" id="confirmaSenha" name="confirmaSenha" required data-validate="confirm-password"
+                placeholder="Repita a senha" maxlength="50">
+              <div class="error-message"></div>
+              <div class="success-message">Senhas coincidem</div>
+            </div>
+          </fieldset>
+
+          <!-- BOTÕES -->
+          <div class="form-buttons">
+            <input type="submit" value="Enviar Cadastro">
+            <input type="reset" value="Limpar Formulário">
+          </div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>Vila da Folha 2026</p>
+    <p>Fundamentos de Programação Web</p>
+  </footer>
+
+  <script src="./scripts/validacao.js"></script>
+  <script src="./scripts/main.js"></script>
+  <script>
+    document.getElementById('cadastroForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      if (validateForm('cadastroForm')) {
+        showAlert('Formulário válido! Enviando dados...', 'success', 2000);
+        setTimeout(() => {
+          this.submit();
+        }, 1000);
+      } else {
+        showAlert('Por favor, corrija os erros no formulário!', 'error', 5000);
+        smoothScroll('.form-group.error');
+      }
+    });
+
+    document.getElementById('cadastroForm').addEventListener('keydown', function (e) {
+      if (e.ctrlKey && e.key === 'Enter') {
+        document.querySelector('input[type="submit"]').click();
+      }
+    });
+  </script>
+</body>
+
+</html>

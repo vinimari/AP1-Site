@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cadastro Recebido - Cadastro de Ninjas</title>
+  <link rel="stylesheet" href="./estilos/style.css">
+  <link rel="stylesheet" href="./estilos/form.css">
+</head>
+<body>
+  <header>
+    <div class="header-container">
+      <a href="./index.html" class="logo">
+        <span class="logo-text">Cadastro de Ninjas</span>
+      </a>
+      <button class="menu-toggle">Menu</button>
+      <nav>
+        <ul>
+          <li><a href="./index.html">Início</a></li>
+          <li><a href="./form.html">Cadastrar Ninja</a></li>
+          <li><a href="./about.html">Sobre</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section>
+      <h1>Cadastro Recebido com Sucesso</h1>
+      <p style="text-align: center; color: #FF6600; font-size: 1.1rem;">
+        Seu cadastro foi processado e registrado no sistema de ninjas da Vila da Folha.
+      </p>
+
+      <div class="form-summary">
+        <h3>Resumo dos Dados Cadastrados</h3>
+        <div id="dadosResumo"></div>
+      </div>
+
+      <div id="tabelaDados" style="margin: 2rem 0;"></div>
+
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 2rem 0;">
+        <a href="./form.html" class="btn btn-primary">Voltar ao Formulário</a>
+        <a href="./index.html" class="btn btn-secondary">Ir para Início</a>
+      </div>
+
+      <div class="highlight">
+        <h3>Como funciona esta página?</h3>
+        <p>
+          Esta página recebe os dados enviados via método <strong>GET</strong> através da
+          URL. O JavaScript extrai e exibe os parâmetros da query string em tempo real,
+          sem necessidade de envio para um servidor.
+        </p>
+        <p style="margin-top: 1rem;">
+          <strong>URL Atual:</strong> <code style="background: #f0f0f0; padding: 0.25rem 0.5rem; border-radius: 3px; word-break: break-all;">
+            <span id="urlAtual"></span>
+          </code>
+        </p>
+      </div>
+
+      <h2>Explicação Técnica</h2>
+      <div style="background: #FFE6CC; padding: 1.5rem; border-radius: 8px; border-left: 4px solid #FF6600;">
+        <h3>Como o JavaScript processa os dados:</h3>
+        <ol style="margin-left: 1.5rem;">
+          <li><strong>Extração da Query String:</strong> Obtém todos os parâmetros da URL</li>
+          <li><strong>Decodificação:</strong> Decodifica caracteres especiais</li>
+          <li><strong>Processamento:</strong> Agrupa múltiplos valores com mesma chave</li>
+          <li><strong>Formatação:</strong> Exibe os dados de forma legível</li>
+          <li><strong>Validação:</strong> Verifica se há dados válidos a exibir</li>
+        </ol>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>Vila da Folha 2026</p>
+    <p style="font-size: 0.9rem; margin-top: 1rem;">Desenvolvido com HTML5, CSS3 e JavaScript puro</p>
+  </footer>
+
+  <script>
+    /**
+     * Obtém parâmetros da URL (query string)
+     * @returns {Object} - Objeto com os parâmetros
+     */
+    function getQueryParameters() {
+      const params = new URLSearchParams(window.location.search);
+      const data = {};
+
+      for (let [key, value] of params.entries()) {
+        if (data[key]) {
+          // Se a chave já existe, converter para array
+          if (!Array.isArray(data[key])) {
+            data[key] = [data[key]];
+          }
+          data[key].push(value);
+        } else {
+          data[key] = value;
+        }
+      }
+
+      return data;
+    }
+
+    /**
+     * Formata um valor para exibição
+     * @param {*} value - Valor a formatar
+     * @returns {string} - Valor formatado
+     */
+    function formatValue(value) {
+      if (Array.isArray(value)) {
+        return value.join(', ');
+      }
+
+      // Decodificar se estiver codificado
+      try {
+        return decodeURIComponent(value);
+      } catch (e) {
+        return value;
+      }
+    }
+
+    /**
+     * Formata um label de chave
+     * @param {string} key - Chave
+     * @returns {string} - Label formatado
+     */
+    function formatLabel(key) {
+      return key
+        .replace(/([A-Z])/g, ' $1')
+        .replace(/^./, str => str.toUpperCase())
+        .trim();
+    }
+
+    /**
+     * Exibe os dados recebidos
+     */
+    function displayData() {
+      const data = getQueryParameters();
+      const dadosResumo = document.getElementById('dadosResumo');
+      const tabelaDados = document.getElementById('tabelaDados');
+      const urlAtual = document.getElementById('urlAtual');
+
+      // Exibir URL
+      urlAtual.textContent = window.location.href;
+
+      if (Object.keys(data).length === 0) {
+        dadosResumo.innerHTML = '<p style="color: #dc3545;">Nenhum dado foi recebido! Verifique se o formulário foi enviado corretamente.</p>';
+        tabelaDados.innerHTML = '';
+        return;
+      }
+
+      // Criar resumo dos dados
+      let resumoHtml = '';
+      for (let [key, value] of Object.entries(data)) {
+        const label = formatLabel(key);
+        const displayValue = formatValue(value);
+
+        resumoHtml += `
+          <div class="summary-item">
+            <span class="summary-label">${label}:</span>
+            <span class="summary-value">${displayValue}</span>
+          </div>
+        `;
+      }
+      dadosResumo.innerHTML = resumoHtml;
+
+      // Criar tabela detalhada
+      let tabelaHtml = '<h3>Tabela Detalhada de Dados</h3>';
+      tabelaHtml += '<table style="width: 100%; border-collapse: collapse;">';
+      tabelaHtml += '<thead style="background-color: #FF6600; color: white;">';
+      tabelaHtml += '<tr><th style="padding: 0.75rem; text-align: left; border: 1px solid #e0e0e0;">Campo</th>';
+      tabelaHtml += '<th style="padding: 0.75rem; text-align: left; border: 1px solid #e0e0e0;">Valor</th></tr>';
+      tabelaHtml += '</thead>';
+      tabelaHtml += '<tbody>';
+
+      let rowColor = '#FFE6CC';
+      for (let [key, value] of Object.entries(data)) {
+        const label = formatLabel(key);
+        const displayValue = formatValue(value);
+
+        tabelaHtml += `
+          <tr style="background-color: ${rowColor}; border: 1px solid #e0e0e0;">
+            <td style="padding: 0.75rem; border: 1px solid #e0e0e0;"><strong>${label}</strong></td>
+            <td style="padding: 0.75rem; border: 1px solid #e0e0e0;">${displayValue}</td>
+          </tr>
+        `;
+
+        rowColor = rowColor === '#FFE6CC' ? 'white' : '#FFE6CC';
+      }
+
+      tabelaHtml += '</tbody>';
+      tabelaHtml += '</table>';
+      tabelaDados.innerHTML = tabelaHtml;
+
+      // Exibir alerta de sucesso
+      console.log('Dados recebidos:', data);
+    }
+
+    // Executar quando a página carregar
+    document.addEventListener('DOMContentLoaded', displayData);
+  </script>
+
+  <script src="./scripts/main.js"></script>
+</body>
+</html>
